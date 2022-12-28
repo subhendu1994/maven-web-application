@@ -6,6 +6,8 @@ node{
     echo "The Build number is: ${env.BUILD_NUMBER}"
     echo "The Node name is: ${env.NODE_NAME}"
 
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])    
+    
 //Checkout Code State
 stage('CheckoutCode'){
 git branch: 'development', url: 'https://github.com/subhendu1994/maven-web-application.git'
